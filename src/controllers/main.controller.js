@@ -70,7 +70,7 @@ const deleteOne = (model) => async (req, res) => {
         });
 
         res.json({
-            message: i18n.SUCCESS_MESSAGES.EDITED,
+            message: i18n.SUCCESS_MESSAGES.DELETED,
         });
     } catch (error) {
         res.json({
