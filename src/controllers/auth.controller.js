@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken");
 
 const login = async (req, res) => {
     try {
+        console.log(req.body);
         const user = await Usuarios.findOne({
             usuario: req.body.usuario,
         });
@@ -62,7 +63,16 @@ const register = async (req, res) => {
     }
 };
 
+const testCookie = async (req, res) => {
+    try {
+        res.send(true);
+    } catch (error) {
+        res.send(false);
+    }
+};
+
 module.exports = {
     login,
     register,
+    testCookie,
 };

@@ -2,6 +2,14 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const usuariosSchema = new Schema({
+    reservas: [
+        {
+            reserva: {
+                type: Schema.ObjectId,
+                ref: "Reservas",
+            },
+        },
+    ],
     nombreCompleto: {
         type: String,
     },
