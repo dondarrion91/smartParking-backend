@@ -8,6 +8,7 @@ const usuariosSchema = new Schema({
     usuario: {
         type: String,
         required: true,
+        unique: true,
     },
     password: {
         type: String,
@@ -15,6 +16,11 @@ const usuariosSchema = new Schema({
     },
     dni: {
         type: Number,
+        require: true,
+        unique: true,
+    },
+    admin: {
+        type: Boolean,
         require: true,
     },
 });

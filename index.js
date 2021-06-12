@@ -1,6 +1,8 @@
 const express = require("express");
 const routes = require("./src/routes");
 const mongoose = require("mongoose");
+const cookieParser = require("cookie-parser");
+require("dotenv").config();
 
 // cors
 const cors = require("cors");
@@ -18,9 +20,15 @@ const app = express();
 // body parser
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 // Hab cors
-app.use(cors());
+app.use(
+    cors({
+        origin: process.env.ORIGIN,
+        credentials: true,
+    })
+);
 
 //rutas
 routes(app);
