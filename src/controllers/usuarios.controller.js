@@ -40,4 +40,5 @@ module.exports = {
     getAllUsers: getAllUsers(Usuarios),
     getOneUser: getOneUser(Usuarios),
     deleteUser: mainController.deleteOne(Usuarios),
+    editUser: mainController.editOne(Usuarios),
 };

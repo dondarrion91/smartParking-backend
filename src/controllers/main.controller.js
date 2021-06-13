@@ -6,9 +6,7 @@ const create = (model) => async (req, res) => {
     try {
         await newRecord.save();
 
-        res.json({
-            message: i18n.SUCCESS_MESSAGES.SUCCESS,
-        });
+        res.json(newRecord);
     } catch (error) {
         console.log(error);
         res.json({
