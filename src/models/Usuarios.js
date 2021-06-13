@@ -27,6 +27,10 @@ const usuariosSchema = new Schema({
         require: true,
         unique: true,
     },
+    vehiculo: {
+        type: Schema.ObjectId,
+        ref: "Vehiculos",
+    },
     admin: {
         type: Boolean,
         require: true,
