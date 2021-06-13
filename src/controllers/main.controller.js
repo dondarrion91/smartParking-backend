@@ -8,7 +8,6 @@ const create = (model) => async (req, res) => {
 
         res.json(newRecord);
     } catch (error) {
-        console.log(error);
         res.json({
             message: i18n.ERROR_MESSAGES.SERVER,
         });

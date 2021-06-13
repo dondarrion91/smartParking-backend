@@ -1,12 +1,26 @@
 const mainController = require("./main.controller");
 const Usuarios = require("../models/Usuarios");
+const i18n = require("../i18n/request.message");
 
 const getAllUsers = (model) => async (req, res) => {
     try {
-        const records = await model.find().populate({
-            path: "reservas.reserva",
-            model: "Reservas",
-        });
+        let records = null;
+
+        if (req.query.admin) {
+            records = await model
+                .findOne({
+                    admin: true,
+                })
+                .populate({
+                    path: "reservas.reserva",
+                    model: "Reservas",
+                });
+        } else {
+            records = await model.find().populate({
+                path: "reservas.reserva",
+                model: "Reservas",
+            });
+        }
 
         res.json(records);
     } catch (error) {

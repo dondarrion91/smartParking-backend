@@ -28,6 +28,7 @@ const login = async (req, res) => {
                 .json({
                     id: user._id,
                     usuario: user.usuario,
+                    admin: user.admin,
                 });
         } else {
             res.status(401).json({
@@ -35,21 +36,12 @@ const login = async (req, res) => {
             });
         }
     } catch (error) {
-        console.log(error);
         res.json({ message: i18n.ERROR_MESSAGES.USER_NOT_FOUND });
     }
 };
 
 const register = async (req, res) => {
     try {
-        const users = await Usuarios.find();
-
-        if (users.length === 0) {
-            req.body.admin = true;
-        } else {
-            req.body.admin = false;
-        }
-
         let user = await Usuarios.create(req.body);
         const hash = bcrypt.hashSync(req.body.password, 10);
 
@@ -61,7 +53,6 @@ const register = async (req, res) => {
             message: i18n.SUCCESS_MESSAGES.USER_REGISTERED,
         });
     } catch (error) {
-        console.log(error);
         res.json({ message: i18n.ERROR_MESSAGES.USER_ALREADY_EXISTS });
     }
 };
