@@ -6,10 +6,6 @@ const reservasSchema = new Schema({
         type: Schema.ObjectId,
         ref: "Lugares",
     },
-    fecha: {
-        type: Date,
-        required: true,
-    },
     horaIngreso: {
         type: Date,
         required: true,

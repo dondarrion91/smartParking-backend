@@ -15,6 +15,13 @@ module.exports = function () {
         middlewares.verifyToken,
         usuariosController.getOneUser
     );
+
+    router.put(
+        "/usuarios/:id",
+        middlewares.verifyToken,
+        usuariosController.editUser
+    );
+
     router.delete(
         "/usuarios/:id",
         middlewares.verifyToken,

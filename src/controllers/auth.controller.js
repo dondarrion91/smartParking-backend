@@ -12,6 +12,7 @@ const login = async (req, res) => {
         if (bcrypt.compareSync(req.body.password, user.password)) {
             const token = jwt.sign(
                 {
+                    id: user._id,
                     usuario: req.body.usuario,
                 },
                 process.env.TOKEN_SECRET,
@@ -24,7 +25,10 @@ const login = async (req, res) => {
                     httpOnly: true,
                     secure: process.env.NODE_ENV !== "development",
                 })
-                .json({ token: token });
+                .json({
+                    id: user._id,
+                    usuario: user.usuario,
+                });
         } else {
             res.status(401).json({
                 message: i18n.ERROR_MESSAGES.AUTH,
@@ -62,7 +66,16 @@ const register = async (req, res) => {
     }
 };
 
+const testCookie = async (req, res) => {
+    try {
+        res.send(true);
+    } catch (error) {
+        res.send(false);
+    }
+};
+
 module.exports = {
     login,
     register,
+    testCookie,
 };
