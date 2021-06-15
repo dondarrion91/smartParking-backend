@@ -7,9 +7,14 @@ require("dotenv").config();
 // cors
 const cors = require("cors");
 
+const MONGO_URL =
+    process.env.NODE_ENV === "development"
+        ? process.env.DEV_URL
+        : process.env.PRO_URL;
+
 //conectar Mongo
 mongoose.Promise = global.Promise;
-mongoose.connect("mongodb://localhost/restapi", {
+mongoose.connect(MONGO_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
