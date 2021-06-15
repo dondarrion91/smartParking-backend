@@ -5,11 +5,7 @@ const vehiculosController = require("../controllers/vehiculos.controller");
 const middlewares = require("../middleware/auth");
 
 module.exports = function () {
-    router.get(
-        "/vehiculos",
-        middlewares.verifyToken,
-        vehiculosController.getAllVehiculos
-    );
+    router.get("/vehiculos", vehiculosController.getAllVehiculos);
     router.post("/vehiculos", vehiculosController.createVehiculos);
     router.put(
         "/vehiculos/:id",
