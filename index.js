@@ -42,4 +42,4 @@ routes(app);
 app.use(express.static("uploads"));
 
 // puerto
-app.listen(3000);
+app.listen(process.env.PORT || 3000);
